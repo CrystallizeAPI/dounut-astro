@@ -1,0 +1,10 @@
+---
+import { CheckoutForm } from "../components/checkout";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Checkout">
+  <div class="container mx-auto">
+    <CheckoutForm client:load />
+  </div>
+</Layout>

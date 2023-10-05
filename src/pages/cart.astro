@@ -1,0 +1,11 @@
+---
+import { LocalCart } from "../components/local-cart.tsx";
+import Layout from "../layouts/Layout.astro";
+
+---
+
+<Layout title="Cart">
+    <div class="container mx-auto">
+      <LocalCart client:only />
+    </div>
+</Layout>

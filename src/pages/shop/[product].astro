@@ -1,0 +1,25 @@
+---
+import { fetchAllProducts } from "../../use-cases/queries/all-products";
+import { fetchProduct } from "../../use-cases/queries/product";
+import { Product } from "../../components/product";
+import Layout from "../../layouts/Layout.astro";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const paths = await fetchAllProducts();
+  return paths.catalogue.children.map((child: { path: string }) => ({
+    params: { product: child.path.replace("/shop/", "") },
+  }));
+}
+
+const { product } = Astro.params;
+
+const productData = await fetchProduct(`/shop/${product}`);
+---
+
+<Layout title={productData.product.name}>
+    <div class="lg:container mx-auto w-full lg:px-0 px-5">
+      <Product product={productData.product} client:load />
+    </div>
+</Layout>

@@ -1,0 +1,17 @@
+---
+import { Grid } from "../components/grid";
+import { Products } from "../components/products";
+import Layout from "../layouts/Layout.astro";
+import { fetchFrontPage } from "../use-cases/queries/frontpage.ts";
+
+const data = await fetchFrontPage("/frontpage", "published");
+const { catalogue, donuts } = data;
+const { grid } = catalogue;
+---
+
+<Layout title="Dounot">
+  <div class="py-10 lg:container mx-auto w-full md:px-0 px-3">
+    <Grid grid={grid} />
+    <Products donuts={donuts} />
+  </div>
+</Layout>
