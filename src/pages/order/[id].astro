@@ -3,16 +3,20 @@ import { getOrderById } from "../../use-cases/queries/get-order";
 import { Order } from "../../components/order";
 import Layout from "../../layouts/Layout.astro";
 
+export const prerender = false
+
 const { id } = Astro.params;
 const data = id ? await getOrderById(id) : null;
 ---
 
 <Layout title="Order">
-    {
-      data ? (
-        <Order order={data?.orders?.get} />
-      ) : (
-        <h1>Oops! Order not found.</h1>
-      )
-    }
+    <div class="lg:container mx-auto w-full lg:px-0 px-4">
+      {
+        data ? (
+          <Order order={data?.orders?.get} />
+        ) : (
+          <h1>Oops! Order not found.</h1>
+        )
+      }
+    </div>
 </Layout>

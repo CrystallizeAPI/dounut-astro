@@ -9,6 +9,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const { pathname } = Astro.url;
 ---
 
 <!doctype html>
@@ -25,9 +26,15 @@ const { title } = Astro.props;
   <body class="relative text-text bg-primary">
     <Header client:visible />
     <slot />
-    <div class="absolute inset-0 bg-fixed -z-10">
-      <Background />
-    </div>
+    {
+      pathname === "/cart" ||
+      pathname === "/checkout" ||
+      pathname.startsWith("/order") ? null : (
+        <div class="absolute inset-0 bg-fixed -z-10">
+          <Background />
+        </div>
+      )
+    }
     <footer class="container mt-40 mx-auto pb-10">
       <a href="/" title="Remix">
         <Logo />

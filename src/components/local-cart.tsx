@@ -9,7 +9,7 @@ export const LocalCart = () => {
     );
 
     return (
-        <div className="py-20 text-text w-auth mx-auto">
+        <div className="py-20 text-text lg:w-auth mx-auto w-full">
             <h1 className="text-4xl font-bold  mb-10">
                 Your shopping cart ({cart.length})
             </h1>

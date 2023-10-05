@@ -18,7 +18,7 @@ type OrderProps = {
 export const Order = ({ order }: OrderProps) => {
     const { total } = order;
     return (
-        <div className="w-auth p-20 bg-background3 mx-auto mt-20 text-text">
+        <div className="lg:w-auth lg:p-20 bg-background3 mx-auto mt-20 text-text w-full p-10">
             <div>
                 <h1 className="font-bold text-3xl mb-6">Order Confirmation</h1>
                 <p className="mb-5">We have received your order #{order.id}.</p>

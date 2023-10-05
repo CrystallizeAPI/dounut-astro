@@ -5,7 +5,7 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Cart">
-    <div class="container mx-auto">
-      <LocalCart client:only />
+    <div class="lg:container mx-auto w-full lg:px-0 px-5">
+      <LocalCart client:visible />
     </div>
 </Layout>
