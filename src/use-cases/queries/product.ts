@@ -1,9 +1,9 @@
-import { apiClient } from "../shared"
+import { apiClient } from "../shared";
 
 export async function fetchProduct(path: String) {
     try {
         return await apiClient.catalogueApi(
-          `
+            `
             #graphql
             query Product($path: String!, $version: VersionLabel) {
               product: catalogue(path: $path, language: "en", version: $version) {
@@ -138,10 +138,10 @@ export async function fetchProduct(path: String) {
               }
             }
             
-          `, 
-          { path }
-        )
+          `,
+            { path }
+        );
     } catch (error) {
-        throw error
+        throw error;
     }
 }

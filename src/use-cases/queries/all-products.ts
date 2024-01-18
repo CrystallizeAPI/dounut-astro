@@ -1,9 +1,9 @@
 import { apiClient } from "../shared";
 
 export async function fetchAllProducts() {
-  try {
-    return await apiClient.catalogueApi(
-      `
+    try {
+        return await apiClient.catalogueApi(
+            `
         #graphql
         {
           catalogue(path:"/shop"){
@@ -13,8 +13,8 @@ export async function fetchAllProducts() {
           }
         }
       `
-    )
-  } catch (error) {
-    throw error;
-  }
+        );
+    } catch (error) {
+        throw error;
+    }
 }

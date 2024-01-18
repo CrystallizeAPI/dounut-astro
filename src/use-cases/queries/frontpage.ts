@@ -1,9 +1,9 @@
-import { apiClient } from "../shared"
+import { apiClient } from "../shared";
 
 export async function fetchFrontPage(path: String, version: String) {
-  try {
-    return await apiClient.catalogueApi(
-      `
+    try {
+        return await apiClient.catalogueApi(
+            `
                #graphql
                 query($path: String!, $version: VersionLabel) {
                     catalogue(path: $path, language: "en", version: $version) {
@@ -112,12 +112,13 @@ export async function fetchFrontPage(path: String, version: String) {
                     }
                   }
                   
-            `, {
-      path,
-      version
+            `,
+            {
+                path,
+                version,
+            }
+        );
+    } catch (error) {
+        throw error;
     }
-    )
-  } catch (error) {
-    throw error
-  }
 }

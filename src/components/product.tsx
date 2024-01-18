@@ -1,18 +1,21 @@
+import { useState, useEffect } from "react";
 import { ContentTransformer, Image } from "@crystallize/reactjs-components";
 import { ProductBody } from "./product-body";
 import { VariantSelector } from "./variant-selector";
 import { RelatedProducts } from "./related-products";
-import { useState, useEffect } from "react";
 import {
     getCurrencySymbol,
     getDefaultPriceVariant,
     variantToCartItem,
 } from "../use-cases/utils";
+import type { Product as ProductType } from "../use-cases/contracts/Product";
 
-export const Product = ({ product }: any) => {
-    const [selectedVariant, setSelectedVariant] = useState(product.variants[0]);
+export const Product = ({ product }: { product: ProductType }) => {
+    const [selectedVariant, setSelectedVariant] = useState(
+        product?.variants?.[0]
+    );
     const onVariantChange = (variant: any) => setSelectedVariant(variant);
-    const defaultPrice = getDefaultPriceVariant(selectedVariant.priceVariants);
+    const defaultPrice = getDefaultPriceVariant(selectedVariant?.priceVariants);
     const [cart, setCart] = useState<any>([]);
     const [buttonText, setButtonText] = useState("Add to Cart");
 
@@ -43,18 +46,18 @@ export const Product = ({ product }: any) => {
                         {product.name}
                     </h1>
                     <ContentTransformer
-                        json={product.summary.content?.json as [any]}
+                        json={product?.summary?.content?.json as [any]}
                     />
                 </div>
                 <Image
-                    {...product.defaultVariant.firstImage}
+                    {...product.defaultVariant?.firstImage}
                     sizes="500px"
                     className="rounded-sm mx-auto"
                 />
                 <div className="lg:mb-0 mb-5">
                     <VariantSelector
-                        variants={product.variants}
-                        selectedVariant={selectedVariant}
+                        variants={product.variants!}
+                        selectedVariant={selectedVariant!}
                         onVariantChange={onVariantChange}
                     />
                 </div>
@@ -64,8 +67,8 @@ export const Product = ({ product }: any) => {
                     <p className="font-semibold text-sm">Total price</p>
                     <p className="font-bold text-lg">
                         {getCurrencySymbol(
-                            defaultPrice.currency,
-                            defaultPrice.price
+                            defaultPrice?.currency ?? "EUR",
+                            defaultPrice?.price ?? 0.0
                         )}
                     </p>
                 </div>
@@ -75,7 +78,6 @@ export const Product = ({ product }: any) => {
                 >
                     {buttonText}
                 </button>
-                
             </div>
             <div>
                 <ProductBody body={product.body} table={product.table} />

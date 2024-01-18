@@ -1,31 +1,8 @@
+import type { ProductCard as ProductCardType } from "../use-cases/contracts/ProductCard";
 import { TopicsDisplayer } from "./topics-displayer";
 import { Image } from "@crystallize/reactjs-components";
 
-type ProductCardProps = {
-    product: {
-        id: string;
-        name: string;
-        path: string;
-        topics: any[];
-        bundle?: {
-            content?: {
-                value?: boolean;
-            };
-        };
-        defaultVariant: {
-            firstImage: {
-                altText?: string;
-                variants: any[];
-            };
-            priceVariant: {
-                price: number;
-                currency: string;
-            };
-        };
-    };
-};
-
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard = ({ product }: ProductCardType) => {
     const isBundle = product?.bundle?.content?.value;
     const priceVariant = {
         price: product?.defaultVariant.priceVariant.price,

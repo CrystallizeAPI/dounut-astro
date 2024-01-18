@@ -1,10 +1,12 @@
+import type { LocalCartItem } from "../use-cases/contracts/LocalCartItem";
+
 export const LocalCart = () => {
     const cart =
         typeof window !== "undefined" && localStorage.getItem("cart")
             ? JSON.parse(localStorage.getItem("cart") || "{}")
             : [];
     const total = cart?.reduce(
-        (amount: any, item: any) => item.price + amount,
+        (amount: number, item: LocalCartItem) => item.price + amount,
         0
     );
 
@@ -26,7 +28,7 @@ export const LocalCart = () => {
                             <div className="flex gap-3">
                                 {item.attributes?.map(
                                     (
-                                        attr: { key: string; value: String },
+                                        attr: { key: string; value: string },
                                         index: number
                                     ) => (
                                         <div
@@ -47,11 +49,11 @@ export const LocalCart = () => {
                     <p>${total}</p>
                 </div>
                 <a
-                href="/checkout"
-                className="bg-text text-primary p-3 mt-10 rounded font-semibold text-center"
-            >
-                Checkout
-            </a>
+                    href="/checkout"
+                    className="bg-text text-primary p-3 mt-10 rounded font-semibold text-center"
+                >
+                    Checkout
+                </a>
             </div>
         </div>
     );

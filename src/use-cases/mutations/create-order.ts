@@ -1,8 +1,8 @@
 import { apiClient } from "../shared";
 
 export async function createOrder(orderInput: any) {
-  return await apiClient.orderApi(
-    `#graphql
+    return await apiClient.orderApi(
+        `#graphql
       mutation($input: CreateOrderInput!) {
         orders {
           create(input: $input) {
@@ -10,8 +10,9 @@ export async function createOrder(orderInput: any) {
           }
         }
       }
-    `, {
-      input: orderInput
-    }
-  )
+    `,
+        {
+            input: orderInput,
+        }
+    );
 }

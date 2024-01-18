@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { LocalCartItem } from "../use-cases/contracts/LocalCartItem";
 
 export const CheckoutForm = () => {
     const [state, setState] = useState({
@@ -18,7 +19,7 @@ export const CheckoutForm = () => {
             : [];
 
     const total = cart?.reduce(
-        (amount: any, item: any) => item.price + amount,
+        (amount: number, item: LocalCartItem) => item.price + amount,
         0
     );
 
@@ -66,8 +67,8 @@ export const CheckoutForm = () => {
             },
             body: JSON.stringify(checkoutModel),
         }).then((res) => res.json());
-        
-        if(response?.orders?.create?.id){
+
+        if (response?.orders?.create?.id) {
             localStorage.removeItem("cart");
             window.location.href = `/order/${response.orders.create.id}`;
         }
@@ -85,6 +86,7 @@ export const CheckoutForm = () => {
                         name="First Name"
                         placeholder="First name"
                         className="w-full p-3 border border-text"
+                        required
                         onChange={(e) =>
                             setState({ ...state, firstName: e.target.value })
                         }
@@ -92,6 +94,7 @@ export const CheckoutForm = () => {
                     <input
                         type="text"
                         name="Last Name"
+                        required
                         placeholder="Last name"
                         className="w-full  p-3 border border-text"
                         onChange={(e) =>
@@ -101,6 +104,7 @@ export const CheckoutForm = () => {
                     <input
                         type="text"
                         name="Email"
+                        required
                         placeholder="Email"
                         className="w-full  p-3 border border-text"
                         onChange={(e) =>

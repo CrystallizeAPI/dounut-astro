@@ -1,8 +1,8 @@
 import { apiClient } from "../shared";
 
 export async function getOrderById(id: string) {
-  return await apiClient.orderApi(
-    `#graphql
+    return await apiClient.orderApi(
+        `#graphql
         query($id: ID!) {
           orders {
             get(id: $id) {
@@ -21,8 +21,9 @@ export async function getOrderById(id: string) {
             }
           }
         }  
-    `, {
-      id
-    }
-  )
+    `,
+        {
+            id,
+        }
+    );
 }

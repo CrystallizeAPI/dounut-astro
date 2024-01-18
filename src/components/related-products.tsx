@@ -1,9 +1,14 @@
 import { Image } from "@crystallize/reactjs-components";
+import type { RelatedItem } from "../use-cases/contracts/RelatedItem";
 
-export const RelatedProducts = ({ related }: any) => {
+export const RelatedProducts = ({
+    related,
+}: {
+    related: { content: { items: RelatedItem[] } };
+}) => {
     return (
         <div className="flex w-full items-start flex-wrap gap-1">
-            {related?.content?.items.map((item: any, index: number) => (
+            {related?.content?.items.map((item, index: number) => (
                 <a
                     href={item.path}
                     key={index}
@@ -11,7 +16,7 @@ export const RelatedProducts = ({ related }: any) => {
                 >
                     <div className="flex justify-between">
                         <div className="flex gap-1">
-                            {item.topics?.map((topic: { name: string }) => (
+                            {item.topics?.map((topic) => (
                                 <div
                                     className="text-sm bg-grey px-2 py-1 rounded-2xl"
                                     key={topic.name}
@@ -20,10 +25,10 @@ export const RelatedProducts = ({ related }: any) => {
                                 </div>
                             ))}
                         </div>
-                        <div>${item?.defaultVariant.price}</div>
+                        <div>${item.defaultVariant?.price}</div>
                     </div>
                     <Image
-                        {...item.defaultVariant.firstImage}
+                        {...item.defaultVariant?.firstImage}
                         sizes="300px"
                         loading="lazy"
                     />

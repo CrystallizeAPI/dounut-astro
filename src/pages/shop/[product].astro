@@ -19,7 +19,7 @@ const productData = await fetchProduct(`/shop/${product}`);
 ---
 
 <Layout title={productData.product.name}>
-    <div class="lg:container mx-auto w-full lg:px-0 px-5">
-      <Product product={productData.product} client:load />
-    </div>
+  <div class="lg:container mx-auto w-full lg:px-0 px-5">
+    <Product product={productData.product} client:load />
+  </div>
 </Layout>

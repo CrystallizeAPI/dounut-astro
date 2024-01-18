@@ -1,20 +1,5 @@
-type OrderProps = {
-  order: {
-    id: string;
-    cart: {
-      name: string;
-      quantity: number;
-      price: {
-        gross: number;
-        net: number;
-      };
-    }[];
-    total: {
-      gross: number;
-      net: number;
-    };
-  }
-}
+import type { OrderProps } from "../use-cases/contracts/Order";
+
 export const Order = ({ order }: OrderProps) => {
     const { total } = order;
     return (
@@ -23,7 +8,7 @@ export const Order = ({ order }: OrderProps) => {
                 <h1 className="font-bold text-3xl mb-6">Order Confirmation</h1>
                 <p className="mb-5">We have received your order #{order.id}.</p>
                 <div>
-                    {order?.cart.map((item: any, index: number) => {
+                    {order?.cart.map((item, index: number) => {
                         return (
                             <div
                                 key={index}

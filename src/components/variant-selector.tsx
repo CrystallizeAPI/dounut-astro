@@ -1,22 +1,25 @@
+import type { ProductVariant } from "@crystallize/js-api-client";
 import { isEqual } from "../use-cases/utils";
 
 function reduceAttributes(variants: any[]) {
     return variants.reduce((acc, variant) => {
         const attrs = acc;
-        variant.attributes.forEach(({ attribute, value }: {attribute: any, value: any}) => {
-            const currentAttribute = attrs[attribute];
-            if (!currentAttribute) {
-                attrs[attribute] = [value];
-                return;
-            }
+        variant.attributes.forEach(
+            ({ attribute, value }: { attribute: any; value: any }) => {
+                const currentAttribute = attrs[attribute];
+                if (!currentAttribute) {
+                    attrs[attribute] = [value];
+                    return;
+                }
 
-            const valueExists = currentAttribute.find(
-                (str: string) => str === value
-            );
-            if (!valueExists) {
-                attrs[attribute].push(value);
+                const valueExists = currentAttribute.find(
+                    (str: string) => str === value
+                );
+                if (!valueExists) {
+                    attrs[attribute].push(value);
+                }
             }
-        });
+        );
 
         return attrs;
     }, {});
@@ -25,7 +28,11 @@ function reduceAttributes(variants: any[]) {
 function attributesToObject({ attributes }: any) {
     return Object.assign(
         {},
-        ...attributes.map(({ attribute, value }: {attribute: any, value: any}) => ({ [attribute]: value }))
+        ...attributes.map(
+            ({ attribute, value }: { attribute: any; value: any }) => ({
+                [attribute]: value,
+            })
+        )
     );
 }
 
@@ -34,13 +41,21 @@ export const VariantSelector = ({
     selectedVariant,
     onVariantChange,
 }: {
-    variants: any[];
-    selectedVariant: any;
+    variants: ProductVariant[];
+    selectedVariant: ProductVariant;
     onVariantChange: (variant: any) => void;
 }) => {
     const attributes = reduceAttributes(variants);
 
-    function onAttributeSelect({ attribute, value, e }: {attribute: any, value: any, e: any}) {
+    function onAttributeSelect({
+        attribute,
+        value,
+        e,
+    }: {
+        attribute: any;
+        value: any;
+        e: any;
+    }) {
         const selectedAttributes = attributesToObject(selectedVariant);
 
         selectedAttributes[attribute] = value;
@@ -61,7 +76,7 @@ export const VariantSelector = ({
         <div>
             {Object.keys(attributes).map((attribute) => {
                 const attr = attributes[attribute];
-                const selectedAttr = selectedVariant.attributes.find(
+                const selectedAttr = selectedVariant.attributes?.find(
                     (a: any) => a.attribute === attribute
                 );
 

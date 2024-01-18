@@ -1,17 +1,8 @@
 export const BasketButton = () => {
-    let totalQuantity;
     const basket =
         typeof window !== "undefined" && localStorage.getItem("cart")
             ? JSON.parse(localStorage.getItem("cart") || "{}")
             : [];
-
-    if (basket) {
-        totalQuantity = basket.length;
-    } else {
-        totalQuantity = "0";
-    }
-
-    console.log(basket)
 
     return (
         <div className="relative">
@@ -41,7 +32,7 @@ export const BasketButton = () => {
             </svg>
 
             <div className="w-5 h-5 absolute bg-text rounded-full text-primary text-center -right-2 -top-2 text-sm">
-                {totalQuantity}
+                {basket.length}
             </div>
         </div>
     );

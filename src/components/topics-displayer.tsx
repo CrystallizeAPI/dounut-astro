@@ -1,4 +1,8 @@
-export const TopicsDisplayer = ({ topics }: { topics: any[] }) => {
+export const TopicsDisplayer = ({
+    topics,
+}: {
+    topics?: { name: string }[];
+}) => {
     return (
         <div className="flex gap-1">
             {topics?.map((topic) => (
