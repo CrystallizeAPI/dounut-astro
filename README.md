@@ -1,54 +1,113 @@
-# Astro Starter Kit: Basics
+# AstroJS Boilerplate
+
+---
+
+This repository is what we call a "subtree split": a read-only copy of one directory of the main repository. If you want to report or contribute, you should do it on the main repository: https://github.com/CrystallizeAPI/boilerplates.
+
+---
+
+The product storytelling boilerplate is a minimal eCommerce boilerplate built using AstroJS and Crystallize. You can also check out the [live demo](https://dounot.milliseconds.live/) (deploy it) of this boilerplate.
+
+![dounut-astro-local](https://github.com/CrystallizeAPI/boilerplates/assets/26195876/dfe351b9-69dc-4e9e-947b-e89ff07151a7)
+
+
+
+## What this guide covers:
+
+- Setting up your project
+- Instructions for running the project
+- Accessing the development site
+- Folder structure of the boilerplate
+- Editing the components and the theme
+- Deploying the project
+
+## Getting Started
+
+To get started, head over to GitHub and clone [the repository](https://github.com/CrystallizeAPI/dounut-astro). Make sure to install all the required packages by running the following command for both the folders:
+
+```bash
+npm install
 
 ```
-npm create astro@latest -- --template basics
-```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Running the Project
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Running the project in development is straightforward. To start the development server, run the following command:
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+```bash
+npm run dev
 
 ```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+
+## Accessing the Development Site
+
+Once the development server is running, you will be able to browse to http://localhost:4321/.
+
+<img width="1437" alt="dounut-astro-dev-server" src="https://github.com/CrystallizeAPI/boilerplates/assets/26195876/d615da75-54dc-4866-a8fd-5054fca3a23e">
+
+
+## Folder Structure
+
+This section provides you with a better understanding of the folder structure.
+
+**src/components**
+
+Contains all the components used throughout the application
+
+**src/use-cases**
+
+Includes the GraphQL queries and mutations used to communicate with Crystallize.
+
+**src/pages**
+
+Has all the individual pages the website contains.
+
+## Editing the theme
+
+All the theme related information can be edited in the **tailwind.config.js** file. This includes the colors, spacing, typography used throughout the application.
+
+## Editing the components
+
+Components can be edited by heading over to the **components** folder in **src.**
+
+### Frontpage
+
+The frontpage contains a grid and it is fetching all the grid related information (including the layout) from Crystallize. You can directly edit the grid in Crystallize for changes to take effect. Editing the styling such as the background and typography can be done in the **grid-item** component.
+
+![frontpage-dounut-astro-grid](https://github.com/CrystallizeAPI/boilerplates/assets/26195876/80bebeb5-c2eb-4a96-9721-392bac109e17)
+
+### Product
+
+Individual product pages are using two components - one is the **product** component that contains the hero section, and the ‘Add to cart’ button and then the **product-body** component that can be edited to change the layout of the marketing information displayed on the page.
+
+### Cart, Checkout, and Confirmation
+
+The basket, checkout, and the confirmation pages can be edited in their respective files located in the pages folder.
+
+## Deploying to [Fly.io](http://fly.io/)
+
+The first step is to install **flyctl.** To do so, head over to the [Fly.io documentation](https://fly.io/docs/getting-started/installing-flyctl/). Once installed, you can sign up or login to Fly by typing the following command:
+
+```bash
+flyctl auth signup
+
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Next step is to build the app which can be done by entering:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+flyctl launch
 
-Any static assets, like images, can be placed in the `public/` directory.
+```
 
-## 🧞 Commands
+Lastly, to deploy the application, all you need to do is run:
 
-All commands are run from the root of the project, from a terminal:
+```bash
+npm run deploy
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```
 
-## 👀 Want to learn more?
+## 
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+> Please note that this boilerplate does not contain payment integrations such as Stripe. It is using a dummy payment method.
+>
