@@ -79,12 +79,8 @@ export const Product = ({ product }: { product: ProductType }) => {
                     {buttonText}
                 </button>
             </div>
-            <div>
-                <ProductBody body={product.body} table={product.table} />
-                <p className="text-text mb-4 font-semibold">
-                    Related do(u)nuts
-                </p>
-            </div>
+            <ProductBody body={product.body} table={product.table} />
+            <p className="text-text mb-4 font-semibold">Related do(u)nuts</p>
             <RelatedProducts related={product.related} />
         </>
     );

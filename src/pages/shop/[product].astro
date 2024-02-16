@@ -1,8 +1,9 @@
 ---
 import { fetchAllProducts } from "../../use-cases/queries/all-products";
 import { fetchProduct } from "../../use-cases/queries/product";
-import { Product } from "../../components/product";
+
 import Layout from "../../layouts/Layout.astro";
+import { Product as CrystallizeProduct } from "../../components/product";
 
 export const prerender = true;
 
@@ -18,8 +19,14 @@ const { product } = Astro.params;
 const productData = await fetchProduct(`/shop/${product}`);
 ---
 
-<Layout title={productData.product.name}>
+<Layout title={productData?.product?.name} description={productData?.prodcut?.name}>
   <div class="lg:container mx-auto w-full lg:px-0 px-5">
-    <Product product={productData.product} client:load />
+    {
+      productData ? (
+        <CrystallizeProduct product={productData.product} client:load/>
+      ) : (
+        <p>Product not found</p>
+      )
+    }
   </div>
 </Layout>

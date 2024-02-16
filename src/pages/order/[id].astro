@@ -9,7 +9,7 @@ const { id } = Astro.params;
 const data = id ? await getOrderById(id) : null;
 ---
 
-<Layout title="Order">
+<Layout title="Order" description="Details of your dounut order.">
   <div class="lg:container mx-auto w-full lg:px-0 px-4">
     {
       data ? (

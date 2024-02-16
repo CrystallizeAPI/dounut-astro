@@ -1,9 +1,9 @@
 export const Background = () => {
     return (
         <svg
-            width="2035"
+            width="100%"
             height="100%"
-            viewBox="0 0 2035 2298"
+            viewBox="0 0 2035 3000"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className="w-full h-full"
