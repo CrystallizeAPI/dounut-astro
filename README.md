@@ -84,30 +84,6 @@ Individual product pages are using two components - one is the **product** compo
 
 The basket, checkout, and the confirmation pages can be edited in their respective files located in the pages folder.
 
-## Deploying to [Fly.io](http://fly.io/)
-
-The first step is to install **flyctl.** To do so, head over to the [Fly.io documentation](https://fly.io/docs/getting-started/installing-flyctl/). Once installed, you can sign up or login to Fly by typing the following command:
-
-```bash
-flyctl auth signup
-
-```
-
-Next step is to build the app which can be done by entering:
-
-```bash
-flyctl launch
-
-```
-
-Lastly, to deploy the application, all you need to do is run:
-
-```bash
-npm run deploy
-
-```
-
-## 
 
 > Please note that this boilerplate does not contain payment integrations such as Stripe. It is using a dummy payment method.
 >
