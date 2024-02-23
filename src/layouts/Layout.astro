@@ -1,8 +1,11 @@
 ---
 import { ViewTransitions } from "astro:transitions";
-import { Logo } from "../components/logo";
 import { Header } from "../components/header";
 import { Background } from "../components/background";
+import SvelteLogo from "../assets/svelte-logo.svg?url";
+import AstroLogo from "../assets/astro-logo.svg?url";
+import RemixLogo from "../assets/remix-logo.svg?url";
+import CrystallizeLogo from "../assets/crystallize-logo.svg?url";
 
 interface Props {
   title: string;
@@ -37,9 +40,34 @@ const { pathname } = Astro.url;
       )
     }
     <footer class="container mt-40 mx-auto pb-10">
-      <a href="/" title="Remix">
-        <Logo />
-      </a>
+      <div class="flex justify-between mt-10">
+        <a href="/" title="Astro" class="footer-link">
+          <img src={AstroLogo} alt="Astro" class="w-20" />
+        </a>
+        <a
+          href="https://dounot.milliseconds.live/"
+          title="Remix"
+          class="footer-link"
+        >
+          <img src={RemixLogo} alt="Remix" class="w-20" />
+        </a>
+        <a
+          href="https://dounut-svelte.vercel.app/"
+          title="Svelte"
+          class="footer-link"
+        >
+          <img src={SvelteLogo} alt="Svelte" class="w-20" />
+        </a>
+      </div>
+      <div class="flex items-center gap-1 mt-10">
+        <img src={CrystallizeLogo} alt="Crystallize" class="w-5" />
+        Powered by <a
+          href="https://crystallize.com"
+          class="underline"
+        >
+          Crystallize</a
+        >
+      </div>
     </footer>
     <style is:global>
       @media screen and (max-width: 768px) {
@@ -56,6 +84,11 @@ const { pathname } = Astro.url;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+      }
+
+      .footer-link:hover {
+        transition: transform 0.2s ease-in-out;
+        transform: scale(1.1);
       }
     </style>
   </body>
